@@ -6,5 +6,72 @@ body {
 .wrapper {
     width: 100%;
     height: 100vh;
+    padding: 30px 30px 55px;
     background: radial-gradient(at top, $radial-gradient);
+}
+
+.board {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 12px;
+    border: 2px solid $header-outline;
+    border-radius: 10px;
+
+    @include mq(sm) {
+        padding: 14px 18px;
+    }
+
+    @include mq(md) {
+        padding: 16px 22px;
+    }
+
+    @include mq(lg) {
+        padding: 18px 26px;
+    }
+
+}
+
+.logo {
+    width: 85px;
+    aspect-ratio: 162/99;
+
+    @include mq(sm) {
+        width: 100px;
+    }
+
+    @include mq(md) {
+        width: 120px;
+    }
+
+    @include mq(lg) {
+        width: 140px;
+    }
+}
+
+.score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border-radius: 4px;
+    background-color: #fff;
+    color: $text-dark;
+    font-weight: 700;
+
+    @include mq(sm) {
+        padding: 10px 32px;
+    }
+
+
+    &__sign {
+        text-transform: uppercase;
+    }
+
+    &__result {
+        font-size: clamp(36px, 6vw, 56px);
+    }
 }
