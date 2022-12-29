@@ -81,6 +81,87 @@ body {
     }
 }
 
+.game {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    aspect-ratio: 1/1;
+    margin: 0 auto;
+}
+
+.options {
+    position: relative;
+    height: 50%;
+    aspect-ratio: 313/278;
+    margin: 0 auto;
+    background-image: url('images/bg-triangle.svg');
+    background-position: center;
+    background-repeat: none;
+    background-size: cover;
+}
+
+.option {
+    position: absolute;
+    width: 70%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+
+    &--rock {
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 50%);
+        background: radial-gradient($rock-gradient);
+    }
+
+    &--paper {
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%);
+        background: radial-gradient($paper-gradient);
+    }
+
+    &--scissors {
+        top: 0;
+        right: 0;
+        transform: translate(50%, -50%);
+        background: radial-gradient($scissors-gradient);
+    }
+
+    &__inside {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 75%;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        background-color: #fff;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 45%;
+
+        &--rock {
+            background-image: url('images/icon-rock.svg');
+        }
+
+        &--paper {
+            background-image: url('images/icon-paper.svg');
+        }
+
+        &--scissors {
+            background-image: url('images/icon-scissors.svg');
+        }
+    }
+}
+
+
 .rules__btn {
     padding: 10px 32px;
     border: 2px solid $header-outline;
