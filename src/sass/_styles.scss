@@ -83,17 +83,22 @@ body {
 
 .game {
     width: 100%;
-    max-width: 700px;
+    max-width: 800px;
     margin: 0 auto;
 }
 
 .select {
+    height: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     max-width: 500px;
     aspect-ratio: 1/1;
     margin: 0 auto;
+
+    &--active {
+        height: auto;
+    }
 }
 
 .options {
@@ -133,33 +138,182 @@ body {
         transform: translate(50%, -50%);
         background: radial-gradient($scissors-gradient);
     }
+}
 
-    &__inside {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 75%;
-        aspect-ratio: 1/1;
-        border-radius: 50%;
-        background-color: #fff;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 45%;
+.option__inside {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 45%;
 
-        &--rock {
-            background-image: url('images/icon-rock.svg');
-        }
+    &--rock {
+        background-image: url('images/icon-rock.svg');
+    }
 
-        &--paper {
-            background-image: url('images/icon-paper.svg');
-        }
+    &--paper {
+        background-image: url('images/icon-paper.svg');
+    }
 
-        &--scissors {
-            background-image: url('images/icon-scissors.svg');
-        }
+    &--scissors {
+        background-image: url('images/icon-scissors.svg');
     }
 }
+
+.duel {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        'player ai'
+        'result result';
+    width: 100%;
+    height: 500px;
+    background-color: royalblue;
+
+    @include mq(md) {
+        grid-template-columns: 35% auto 35%;
+        grid-template-rows: auto;
+        grid-template-areas:
+            'player result ai';
+    }
+
+    &__player {
+        grid-area: player;
+        width: 100%;
+        height: 100%;
+        background-color: red;
+    }
+
+    &__ai {
+        grid-area: ai;
+        width: 100%;
+        height: 100%;
+        background-color: blue;
+    }
+
+    &__result {
+        grid-area: result;
+        width: 100%;
+        height: 100%;
+        background-color: green;
+    }
+}
+
+.pick {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        'option'
+        'side'
+    ;
+    justify-content: center;
+
+    @include mq(md) {
+        grid-template-areas:
+            'side'
+            'option'
+        ;
+    }
+}
+
+.pick__side {
+    grid-area: side;
+    margin-top: 16px;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+
+    @include mq(md) {
+        margin-top: 0;
+        margin-bottom: 30px;
+        font-size: 20px;
+    }
+}
+
+
+.pick__option {
+    grid-area: option;
+    position: relative;
+    width: 20vw;
+    min-width: 100px;
+    aspect-ratio: 1/1;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: transparent;
+    border-radius: 50%;
+
+    @include mq(sm) {
+        min-width: 200px;
+    }
+
+    &--active {
+        display: block;
+    }
+
+    &--rock {
+        background: radial-gradient($rock-gradient);
+    }
+
+    &--paper {
+        background: radial-gradient($paper-gradient);
+    }
+
+    &--scissors {
+        background: radial-gradient($scissors-gradient);
+    }
+}
+
+.pick__option-inside {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 45%;
+
+
+    &--rock {
+        background-image: url('images/icon-rock.svg');
+    }
+
+    &--paper {
+        background-image: url('images/icon-paper.svg');
+    }
+
+    &--scissors {
+        background-image: url('images/icon-scissors.svg');
+    }
+}
+
+.pick__shadow {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background-color: rgba(10, 10, 10, 10%);
+
+    &--active {
+        display: block;
+    }
+}
+
 
 
 .rules__btn {
