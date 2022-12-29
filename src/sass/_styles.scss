@@ -355,7 +355,7 @@ body {
 }
 
 .rules__info {
-    display: grid;
+    display: none;
     grid-template-columns: auto;
     grid-template-rows: auto auto auto;
     grid-template-areas:
@@ -383,6 +383,10 @@ body {
         height: 400px;
         padding: 20px;
         border-radius: 8px;
+    }
+
+    &--active {
+        display: grid;
     }
 }
 
