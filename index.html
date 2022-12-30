@@ -23,25 +23,25 @@
       </div>
     </header>
     <main class="game">
-      <section class="select">
+      <section class="select select--active" id="select-section">
         <div class="options">
-          <div class="option option--rock">
+          <div class="option option--rock" data-option="0">
             <div class="option__inside option__inside--rock"></div>
           </div>
-          <div class="option option--paper">
+          <div class="option option--paper" data-option="1">
             <div class="option__inside option__inside--paper"></div>
           </div>
-          <div class="option option--scissors">
+          <div class="option option--scissors" data-option="2">
             <div class="option__inside option__inside--scissors"></div>
           </div>
         </div>
       </section>
-      <section class="duel">
+      <section class="duel" id="duel-section">
         <div class="duel__player">
           <div class="pick">
             <span class="pick__side">You picked</span>
-            <div class="pick__option pick__option--paper pick__option--active">
-              <div class="pick__option-inside pick__option-inside--paper"></div>
+            <div class="pick__option pick__option--paper pick__option--active" id="player-pick">
+              <div class="pick__option-inside pick__option-inside--paper" id="player-pick-inside"></div>
             </div>
           </div>
         </div>

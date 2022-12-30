@@ -84,7 +84,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 500px;
+    max-width: 70vh;
     aspect-ratio: 1/1;
     margin: 0 auto;
 
@@ -109,6 +109,7 @@ body {
     width: 70%;
     aspect-ratio: 1/1;
     border-radius: 50%;
+    cursor: pointer;
 
     &--rock {
         bottom: 0;
@@ -144,6 +145,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 45%;
+    pointer-events: none;
 
     &--rock {
         background-image: url('images/icon-rock.svg');
@@ -159,7 +161,7 @@ body {
 }
 
 .duel {
-    display: grid;
+    display: none;
     grid-template-columns: 50% 50%;
     grid-template-rows: auto auto;
     grid-template-areas:
@@ -173,6 +175,10 @@ body {
         grid-template-rows: auto;
         grid-template-areas:
             'player result ai';
+    }
+
+    &--active {
+        display: grid;
     }
 }
 
