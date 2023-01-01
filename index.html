@@ -40,23 +40,23 @@
         <div class="duel__player">
           <div class="pick">
             <span class="pick__side">You picked</span>
-            <div class="pick__option pick__option--paper pick__option--active" id="player-pick">
-              <div class="pick__option-inside pick__option-inside--paper" id="player-pick-inside"></div>
+            <div class="pick__option pick__option--active" id="user-pick">
+              <div class="pick__option-inside" id="user-pick-inside"></div>
             </div>
           </div>
         </div>
         <div class="duel__ai">
           <div class="pick">
             <span class="pick__side">The house picked</span>
-            <div class="pick__option">
+            <div class="pick__option" id="ai-pick">
               <div class="pick__shadow pick__shadow--active"></div>
-              <div></div>
+              <div id="ai-pick-inside"></div>
             </div>
           </div>
         </div>
-        <div class="duel__result">
-          <span class="duel__result-sign">You lose</span>
-          <span class="duel__result-btn">play again</span>
+        <div class="duel__result" id="duel-result">
+          <span class="duel__result-sign" id="duel-result-sign"></span>
+          <span class="duel__result-btn" id="play-again-btn">play again</span>
         </div>
       </section>
     </main>
