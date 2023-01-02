@@ -53,7 +53,7 @@ class Game {
         this.toggleUserPick()
         setTimeout(() => this.toggleAiPick(), 1200)
         setTimeout(() => this.displayResult(), 1800)
-        this.checkResult(this.picks.user, this.picks.ai)
+        this.checkResult()
     }
 
     aiSelection() {
@@ -79,19 +79,51 @@ class Game {
     }
 
     displayResult() {
-        this.setResultSign()
-        this.duelResult?.classList.toggle('duel__result--active')
+        const result = this.checkResult()
+        this.setResultSign(result)
+        this.setResultStatus(result)
+        this.duelResult?.classList.add('duel__result--active')
     }
 
-    setResultSign() {
-        const result = this.checkResult(this.picks.user, this.picks.ai)
+    hideResult() {
+        const result = this.checkResult()
+        this.removeResultStatus(result)
+        this.duelResult?.classList.remove('duel__result--active')
+    }
+
+    setResultSign(result: string) {
         this.duelResultSign.textContent = `you ${result}!`
     }
 
-    checkResult(userPick: string, aiPick: string) {
-        if ((userPick === 'paper' && aiPick === 'rock') || (userPick === 'rock' && aiPick === 'scissors') || (userPick === 'scissors' && aiPick === 'paper')) {
+    setResultStatus(result: string) {
+        if (result === 'tie') return
+        const status = document.createElement('div')
+        status.classList.add('pick__option-outside')
+        if (result === 'win') {
+            this.userPick?.appendChild(status)
+        } else {
+            this.aiPick?.appendChild(status)
+        }
+    }
+
+    removeResultStatus(result: string) {
+        if (result === 'tie') return
+        if (result === 'win') {
+            if (this.userPick && this.userPick.lastChild) {
+                this.userPick.removeChild(this.userPick.lastChild);
+            }
+        } else {
+            if (this.aiPick && this.aiPick.lastChild) {
+                this.aiPick.removeChild(this.aiPick.lastChild);
+            }
+        }
+    }
+
+    checkResult() {
+        const { user, ai } = this.picks
+        if ((user === 'paper' && ai === 'rock') || (user === 'rock' && ai === 'scissors') || (user === 'scissors' && ai === 'paper')) {
             return 'win'
-        } else if (userPick === aiPick) {
+        } else if (user === ai) {
             return 'tie'
         } else {
             return 'lose'
@@ -102,7 +134,7 @@ class Game {
         this.changeView()
         this.toggleUserPick()
         this.toggleAiPick()
-        this.displayResult()
+        this.hideResult()
         this.picks = {
             user: '',
             ai: ''

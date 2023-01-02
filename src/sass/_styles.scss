@@ -9,9 +9,13 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 100vh;
-    padding: 2vh 30px 3vh;
+    min-height: 100vh;
+    padding: 3vh 30px 5vh;
     background: radial-gradient(at top, $radial-gradient);
+
+    @include mq(md) {
+        overflow: hidden;
+    }
 }
 
 .board {
@@ -20,31 +24,32 @@ body {
     align-items: center;
     width: 100%;
     max-width: 700px;
-    margin: 0 auto;
+    margin: 0 auto 10px;
     padding: 10px;
     border: 2px solid $header-outline;
     border-radius: 10px;
+    z-index: 4;
 
     @include mq(sm) {
-        padding: 12px 16px;
+        padding: 10px 16px;
     }
 
     @include mq(md) {
-        padding: 12px 18px;
+        padding: 10px 18px;
     }
 
     @include mq(lg) {
-        padding: 12px 20px;
+        padding: 10px 22px;
     }
 
 }
 
 .logo {
-    width: 85px;
+    width: 65px;
     aspect-ratio: 162/99;
 
     @include mq(sm) {
-        width: 100px;
+        width: 120px;
     }
 }
 
@@ -60,7 +65,7 @@ body {
     font-weight: 700;
 
     @include mq(sm) {
-        padding: 10px 32px;
+        padding: 8px 28px;
     }
 
 
@@ -69,7 +74,7 @@ body {
     }
 
     &__result {
-        font-size: clamp(32px, 5vw, 46px);
+        font-size: clamp(36px, 5vw, 52px);
     }
 }
 
@@ -205,9 +210,12 @@ body {
     padding-top: 5vh;
     padding-bottom: 5vh;
     visibility: hidden;
+    opacity: 0;
+    transition: opacity .4s;
 
     &--active {
         visibility: visible;
+        opacity: 1;
     }
 }
 
@@ -280,9 +288,10 @@ body {
     padding: 20px;
     background-color: transparent;
     border-radius: 50%;
+    z-index: 2;
 
     @include mq(sm) {
-        min-width: 200px;
+        max-width: 200px;
     }
 
     &--active {
@@ -314,7 +323,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 45%;
-    z-index: 2;
+    z-index: 3;
 
 
     &--rock {
@@ -327,6 +336,65 @@ body {
 
     &--scissors {
         background-image: url('images/icon-scissors.svg');
+    }
+}
+
+.pick__option-outside {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    animation: win-status ease-out 1s infinite alternate;
+    pointer-events: none;
+}
+
+@keyframes win-status {
+    0% {
+        background: none;
+    }
+
+    25% {
+        background: radial-gradient(rgba(175, 175, 175, 0),
+                rgba(175, 175, 175, 0) 23.6%,
+                rgba(175, 175, 175, 0.2) 23.6%,
+                rgba(175, 175, 175, 0.2) 38%,
+                rgba(175, 175, 175, 0.0) 38%)
+    }
+
+    50% {
+        background: radial-gradient(rgba(175, 175, 175, 0),
+                rgba(175, 175, 175, 0) 23.6%,
+                rgba(175, 175, 175, 0.2) 23.6%,
+                rgba(175, 175, 175, 0.2) 38%,
+                rgba(175, 175, 175, 0.1) 38%,
+                rgba(175, 175, 175, 0.1) 55%,
+                rgba(175, 175, 175, 0) 55%)
+    }
+
+    75% {
+        background: radial-gradient(rgba(255, 255, 255, 0),
+                rgba(255, 255, 255, 0) 23.6%,
+                rgba(255, 255, 255, 0.2) 23.6%,
+                rgba(255, 255, 255, 0.2) 38%,
+                rgba(255, 255, 255, 0.1) 38%,
+                rgba(255, 255, 255, 0.1) 55%,
+                rgba(255, 255, 255, 0.05) 55%,
+                rgba(255, 255, 255, 0.05) 70%)
+    }
+
+    100% {
+        background: radial-gradient(rgba(255, 255, 255, 0),
+                rgba(255, 255, 255, 0) 23.6%,
+                rgba(255, 255, 255, 0.2) 23.6%,
+                rgba(255, 255, 255, 0.2) 38%,
+                rgba(255, 255, 255, 0.1) 38%,
+                rgba(255, 255, 255, 0.1) 55%,
+                rgba(255, 255, 255, 0.05) 55%,
+                rgba(255, 255, 255, 0.05) 70%)
     }
 }
 
