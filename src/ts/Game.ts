@@ -2,6 +2,7 @@ import { rules } from './Rules'
 import { options } from './options'
 
 class Game {
+    score: HTMLElement | null
     selectSection: HTMLElement | null
     duelSection: HTMLElement | null
     options: NodeListOf<HTMLElement>
@@ -18,6 +19,7 @@ class Game {
     }
 
     constructor() {
+        this.score = document.querySelector('#score')
         this.selectSection = document.querySelector('#select-section')
         this.duelSection = document.querySelector('#duel-section')
         this.options = document.querySelectorAll('[data-option]')
@@ -38,10 +40,11 @@ class Game {
         rules.init()
         this.options.forEach(option => option.addEventListener('click', (e) => this.selectOption(e)))
         this.playAgainBtn?.addEventListener('click', () => this.playAgain())
+        sessionStorage.setItem('score', '0')
     }
 
-    selectOption(e) {
-        const id: number = Number(e.target.dataset.option)
+    selectOption(e: MouseEvent) {
+        const id: number = Number((e.target as HTMLDivElement).dataset.option)
         this.picks.user = options[id].name
         this.contest()
     }
@@ -53,7 +56,8 @@ class Game {
         this.toggleUserPick()
         setTimeout(() => this.toggleAiPick(), 1200)
         setTimeout(() => this.displayResult(), 1800)
-        this.checkResult()
+        setTimeout(() => this.changeScore(), 1800)
+
     }
 
     aiSelection() {
@@ -85,6 +89,17 @@ class Game {
         this.duelResult?.classList.add('duel__result--active')
     }
 
+    changeScore() {
+        const result = this.checkResult()
+        if (result !== 'win') return
+        const score = Number(sessionStorage.getItem('score'))
+        const newScore = score + 1
+        sessionStorage.setItem('score', String(newScore))
+        if (this.score !== null) {
+            this.score.textContent = String(newScore)
+        }
+    }
+
     hideResult() {
         const result = this.checkResult()
         this.removeResultStatus(result)
@@ -92,7 +107,9 @@ class Game {
     }
 
     setResultSign(result: string) {
-        this.duelResultSign.textContent = `you ${result}!`
+        if (this.duelResultSign !== null) {
+            this.duelResultSign.textContent = `you ${result}!`
+        }
     }
 
     setResultStatus(result: string) {
