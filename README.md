@@ -23,4 +23,4 @@ Simple game with nice design thanks to [Frontend Mentor](https://www.frontendmen
 ![](./screenshots/main-mobile.png)
 ![](./screenshots/result-mobile.png)
 ![](./screenshots/main-desktop.png)
-![](./screenshots/result-mobile.png)
+![](./screenshots/result-desktop.png)
