@@ -108,12 +108,16 @@ class Game {
 
     setResultSign(result: string) {
         if (this.duelResultSign !== null) {
-            this.duelResultSign.textContent = `you ${result}!`
+            if (result !== 'draw') {
+                this.duelResultSign.textContent = `you ${result}`
+            } else {
+                this.duelResultSign.textContent = result
+            }
         }
     }
 
     setResultStatus(result: string) {
-        if (result === 'tie') return
+        if (result === 'draw') return
         const status = document.createElement('div')
         status.classList.add('pick__option-outside')
         if (result === 'win') {
@@ -124,7 +128,7 @@ class Game {
     }
 
     removeResultStatus(result: string) {
-        if (result === 'tie') return
+        if (result === 'draw') return
         if (result === 'win') {
             if (this.userPick && this.userPick.lastChild) {
                 this.userPick.removeChild(this.userPick.lastChild);
@@ -141,7 +145,7 @@ class Game {
         if ((user === 'paper' && ai === 'rock') || (user === 'rock' && ai === 'scissors') || (user === 'scissors' && ai === 'paper')) {
             return 'win'
         } else if (user === ai) {
-            return 'tie'
+            return 'draw'
         } else {
             return 'lose'
         }
